@@ -26,7 +26,6 @@ import org.springframework.kafka.support.ExponentialBackOffWithMaxRetries;
 import com.example.notification.model.NotificationEvent;
 
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
-
 @Configuration
 public class KafkaConfig {
 
@@ -42,13 +41,17 @@ public class KafkaConfig {
     @Value("${spring.kafka.consumer.group-id}")
     private String consumerGroupId;
 
-    @Bean
+    @Bean(name = "producerFactory")
     public ProducerFactory<String, NotificationEvent> producerFactory() {
+        // This hashmap stores the properties for the producer factory
         Map<String, Object> props = new HashMap<>();
+        // This is the bootstrap servers for the producer factory   
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        // This is the key serializer for the producer factory
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // This is the value serializer for the producer factory
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        // Improve reliability
+        // Improve reliability by setting the acks to all
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
         props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 5);
@@ -56,12 +59,12 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory<>(props);
     }
 
-    @Bean
+    @Bean(name = "kafkaTemplate")
     public KafkaTemplate<String, NotificationEvent> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
+    @Bean(name = "consumerFactory")
     public ConsumerFactory<String, NotificationEvent> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -80,7 +83,7 @@ public class KafkaConfig {
     @Value("${spring.kafka.listener.concurrency:3}")
     private Integer concurrency;
 
-    @Bean
+    @Bean(name = "kafkaListenerContainerFactory")   
     public ConcurrentKafkaListenerContainerFactory<String, NotificationEvent> kafkaListenerContainerFactory(
             KafkaTemplate<String, NotificationEvent> kafkaTemplate) {
         ConcurrentKafkaListenerContainerFactory<String, NotificationEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -92,7 +95,7 @@ public class KafkaConfig {
         return factory;
     }
 
-    @Bean
+    @Bean(name = "errorHandler")
     public DefaultErrorHandler errorHandler(KafkaTemplate<String, NotificationEvent> template) {
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template, (record, ex) -> {
             return new TopicPartition(notificationsDltTopic, record.partition());
@@ -104,13 +107,13 @@ public class KafkaConfig {
         return new DefaultErrorHandler(recoverer, backoff);
     }
 
-    @Bean
+    @Bean(name = "notificationsTopic")
     public NewTopic notificationsTopic() {
         // Scale partitions to increase consumer parallelism
         return new NewTopic(notificationsTopic, 6, (short) 1);
     }
 
-    @Bean
+    @Bean(name = "notificationsDltTopic")
     public NewTopic notificationsDltTopic() {
         return new NewTopic(notificationsDltTopic, 6, (short) 1);
     }

@@ -4,6 +4,7 @@ public enum Channel {
     EMAIL,
     SMS,
     PUSH,
+    SLACK,
     WEBHOOK
 }
 

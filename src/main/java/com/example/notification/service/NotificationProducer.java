@@ -32,7 +32,10 @@ public class NotificationProducer {
                 .createdAt(Instant.now())
                 .attempt(0)
                 .build();
+        // This is the kafka template that sends the event to the kafka topic
+        // function definition: send(String topic, String key, T data)
         kafkaTemplate.send(topic, event.getId(), event);
+        // This is the id of the event
         return event.getId();
     }
 }

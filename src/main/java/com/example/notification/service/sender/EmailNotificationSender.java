@@ -18,7 +18,7 @@ public class EmailNotificationSender implements NotificationSender {
 
     @Override
     public void send(NotificationEvent event) {
-        log.info("[EMAIL] To={}, Subject={}", event.getRecipient(), event.getSubject());
+        log.info("[EMAIL] To={}, Subject={}, Message={}", event.getRecipient(), event.getSubject(), event.getMessage());
     }
 }
 
