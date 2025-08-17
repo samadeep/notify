@@ -1,0 +1,45 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.4)
+
+2025-08-16T22:55:09.036+05:30  INFO 53432 --- [notification-service] [           main] c.e.n.NotificationServiceApplication     : Starting NotificationServiceApplication v0.0.1-SNAPSHOT using Java 21.0.6 with PID 53432 (/Users/samadeepsengupta/Library/Mobile Documents/com~apple~CloudDocs/Projects/kafka/notification-service/target/notification-service-0.0.1-SNAPSHOT.jar started by samadeepsengupta in /Users/samadeepsengupta/Library/Mobile Documents/com~apple~CloudDocs/Projects/kafka/notification-service)
+2025-08-16T22:55:09.038+05:30  INFO 53432 --- [notification-service] [           main] c.e.n.NotificationServiceApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-08-16T22:55:09.883+05:30  INFO 53432 --- [notification-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-16T22:55:09.891+05:30  INFO 53432 --- [notification-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-16T22:55:09.892+05:30  INFO 53432 --- [notification-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-08-16T22:55:09.909+05:30  INFO 53432 --- [notification-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-16T22:55:09.910+05:30  INFO 53432 --- [notification-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 833 ms
+2025-08-16T22:55:10.346+05:30  INFO 53432 --- [notification-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-08-16T22:55:10.685+05:30  WARN 53432 --- [notification-service] [service-admin-0] o.a.k.clients.admin.KafkaAdminClient     : [AdminClient clientId=notification-service-admin-0] The DescribeTopicPartitions API is not supported, using Metadata API to describe topics.
+2025-08-16T22:55:10.706+05:30  INFO 53432 --- [notification-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-16T22:55:10.869+05:30  INFO 53432 --- [notification-service] [           main] c.e.n.NotificationServiceApplication     : Started NotificationServiceApplication in 2.085 seconds (process running for 2.38)
+2025-08-16T22:55:15.532+05:30  INFO 53432 --- [notification-service] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-16T22:55:15.533+05:30  INFO 53432 --- [notification-service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-16T22:55:15.534+05:30  INFO 53432 --- [notification-service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#1-1-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-2, notification.events-3]
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-0, notification.events-1]
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-4, notification.events-5]
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#0-1-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-dlt-2, notification.events-dlt-3]
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-dlt-0, notification.events-dlt-1]
+2025-08-16T22:55:17.386+05:30  INFO 53432 --- [notification-service] [ntainer#0-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service: partitions assigned: [notification.events-dlt-4, notification.events-dlt-5]
+2025-08-16T22:55:21.947+05:30  INFO 53432 --- [notification-service] [ntainer#1-1-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=042ceeda-3c24-418c-8438-06fc1814ec69, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:21.948+05:30  INFO 53432 --- [notification-service] [ntainer#1-1-C-1] c.e.n.s.sender.EmailNotificationSender   : [EMAIL] To=user@example.com, Subject=Hello
+2025-08-16T22:55:21.948+05:30  INFO 53432 --- [notification-service] [ntainer#1-1-C-1] c.e.n.service.NotificationConsumer       : Notification processed id=042ceeda-3c24-418c-8438-06fc1814ec69
+2025-08-16T22:55:22.848+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:23.361+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : Record in retry and not yet recovered
+2025-08-16T22:55:23.369+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:24.398+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : Record in retry and not yet recovered
+2025-08-16T22:55:24.403+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:26.473+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : Record in retry and not yet recovered
+2025-08-16T22:55:26.497+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:30.556+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : Record in retry and not yet recovered
+2025-08-16T22:55:30.569+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:38.619+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] o.s.k.l.KafkaMessageListenerContainer    : Record in retry and not yet recovered
+2025-08-16T22:55:38.641+05:30  INFO 53432 --- [notification-service] [ntainer#1-2-C-1] c.e.n.service.NotificationConsumer       : Processing notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, channel=EMAIL, recipient=user@example.com
+2025-08-16T22:55:39.211+05:30 ERROR 53432 --- [notification-service] [ntainer#0-2-C-1] c.e.n.service.DeadLetterConsumer         : Dead-lettered notification id=023dcd24-f8ba-47e4-8cca-789cf5183b32, originalTopic=notification.events, partition=5, offset=0, exClass=org.springframework.kafka.listener.ListenerExecutionFailedException, exMessage=Listener method 'public void com.example.notification.service.NotificationConsumer.onMessage(com.example.notification.model.NotificationEvent) throws java.lang.Exception' threw exception; Simulated processing failure for subject='please fail'
