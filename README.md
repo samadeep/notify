@@ -258,4 +258,7 @@ graph TD
   G --> X
 ```
 
+### Further reading
+- See `docs/RATE_LIMITING.md` for a detailed design covering inbound/outbound policies, Redis token buckets, retry topics, quotas, metrics, and capacity planning.
+
 
