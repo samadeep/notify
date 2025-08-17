@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Cursor ###
+.cursor/
+
+app.log
+app.log
